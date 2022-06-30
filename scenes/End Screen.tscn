@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://CarterOne-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://end screen.png" type="Texture" id=2]
+[ext_resource path="res://scenes/End Screen.gd" type="Script" id=3]
+[ext_resource path="res://music/lofi_Au52.ogg" type="AudioStream" id=4]
+[ext_resource path="res://light.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="Curve" id=2]
+min_value = -1.0
+_data = [ Vector2( 0, 0 ), 0.0, -0.247272, 0, 0, Vector2( 0.77451, -0.0181818 ), -0.285315, 0.0, 0, 0 ]
+
+[node name="End Screen" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="EndScreen" type="Sprite" parent="."]
+position = Vector2( 511, 253 )
+scale = Vector2( 0.293145, 0.281653 )
+texture = ExtResource( 2 )
+
+[node name="Menu" type="Button" parent="."]
+margin_left = 481.0
+margin_top = 362.0
+margin_right = 576.0
+margin_bottom = 399.0
+custom_fonts/font = SubResource( 1 )
+text = "Menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( 482, -3 )
+amount = 100
+lifetime = 8.0
+texture = ExtResource( 5 )
+emission_shape = 2
+emission_rect_extents = Vector2( 550, 1 )
+gravity = Vector2( 0, 30 )
+orbit_velocity_curve = SubResource( 2 )
+scale_amount = 0.01
+scale_amount_random = 0.01
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2( 568, -2 )
+amount = 100
+lifetime = 8.0
+texture = ExtResource( 5 )
+emission_shape = 2
+emission_rect_extents = Vector2( 550, 1 )
+gravity = Vector2( 0, 30 )
+orbit_velocity_curve = SubResource( 2 )
+scale_amount = 0.01
+scale_amount_random = 0.01
+color = Color( 0, 0, 0, 1 )
+
+[connection signal="pressed" from="Menu" to="." method="_on_Menu_pressed"]
